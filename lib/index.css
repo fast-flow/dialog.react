@@ -1,0 +1,155 @@
+/* The CSS specification: https://github.com/fast-flow/trees */
+/* Base style */
+.r-dialog-wrap {
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    text-align: center;
+    white-space:nowrap;
+}
+.r-dialog-wrap:after{
+    content: " ";
+    display:inline-block;width:0;height:100%;overflow:hidden;margin-left:-1px;font-size:0;line-height:0;vertical-align:middle;
+}
+.r-dialog-mask {
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+}
+.r-dialog {
+    white-space: normal;
+    text-align: left;
+    display:inline-block;
+    vertical-align:middle;
+    position: relative;
+    z-index: 2;
+}
+
+// Button style optional
+.r-dialog-tool {
+    text-align: right;
+    .r-dialog-btn {
+        margin-right: .25em;
+        margin-left: .25em;
+    }
+}
+// free
+.r-dialog-btn {
+    position: relative;
+    display: inline-block;
+    *display: inline;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: inherit;
+    border-radius: 3px;
+    /* Correct font family not being inherited in all browsers for <button> <input> */
+    *zoom: 1;
+    border: 1px solid transparent;
+    *overflow: visible;
+    /* for a ie6/7 bug http://blog.csdn.net/jyy_12/article/details/6636099 */
+    background-image: none;
+    /* for old alice button style conflict */
+    box-sizing: border-box;
+
+    // default style
+    font-size:.8em;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    padding:.3em .7em;
+}
+html .r-dialog-btn--primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+html .r-dialog-btn--success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+html .r-dialog-btn--info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+html .r-dialog-btn--warning {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+html .r-dialog-btn--danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+html .r-dialog-btn--link {
+    font-weight: 400;
+    color: #337ab7;
+    border-radius: 0;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+
+/* Configurable style */
+html .r-dialog-mask--hide {
+    display: none;
+}
+html .r-dialog--simple {
+    z-index: 1010;
+}
+html .r-dialog-mask--simple {
+    z-index: 1010;
+    background-color:black;
+    opacity: .3;
+    filter:alpha(opacity=30);
+}
+html .r-dialog--simple .r-dialog {
+    font-size:1em;
+    border-radius: .2em;
+    margin:30px auto;
+    border:1px solid #EEE;
+    background-color:white;
+    box-shadow: 0 0 .2em rgba(0,0,0,.5);
+}
+
+html .r-dialog--simple .r-dialog-title {
+    border-bottom:1px solid #EEE;
+    position: relative;
+    line-height: 2em;
+    padding-left: .5em;
+    padding-right: 2.2em;
+}
+html .r-dialog--simple .r-dialog-close {
+    display: block;
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    font-size: 1.5em;
+    position: absolute;
+    padding-left: .4em;
+    padding-right: .4em;
+    right: 0;
+    top: 0;
+    font-weight: 700;
+    line-height: 1.2em;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+    text-decoration: none;
+}
+html .r-dialog--simple .r-dialog-bd {
+    padding: 1em;
+}
+html .r-dialog--simple .r-dialog-tool {
+    border-top:1px solid #EEE;
+    padding: .3em;
+}
