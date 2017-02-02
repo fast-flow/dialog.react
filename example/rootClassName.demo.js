@@ -11,29 +11,25 @@ var App = React.createClass({
         return (
             <div>
                 <Dialog
-                    title="bootstrap"
+                    title="rootClassName"
                     show={self.state.show}
-                    maskClassName="m-dialog-mask--bootstrap"
-                    className="m-dialog--bootstrap"
+                    rootClassName="m-dialog-rootClasssNameExample"
                     onClose={function () {
                         self.setState({
                             show: false
                         })
                     }}
-                    tool={(
-                        <div>
-                            <span className="r-dialog-btn" data-r-dialog-close="true" >Close</span>
-                            <span className="r-dialog-btn r-dialog-btn--primary">Save</span>
-                        </div>
-                    )}
                      >
-                    bootstrap style
+                    离离原上草，一岁一枯荣。
+                    野火烧不尽，春风吹又生。
+                    远芳侵古道，晴翠接荒城。
+                    又送王孙去，萋萋满别情。
                 </Dialog>
                 <button className="r-dialog-btn" onClick={function() {
                         self.setState({
                             show: true
                         })
-                    }} >bootstrap</button>
+                    }} >rootClassName</button>
             </div>
         )
     }

@@ -8,13 +8,13 @@ var App = React.createClass({
     },
     render: function () {
         var self = this
+        var emptyStyle = {}
         return (
             <div>
                 <Dialog
-                    title="bootstrap"
+                    title="body scroll"
                     show={self.state.show}
-                    maskClassName="m-dialog-mask--bootstrap"
-                    className="m-dialog--bootstrap"
+                    showBodyStyle={emptyStyle}
                     onClose={function () {
                         self.setState({
                             show: false
@@ -22,18 +22,17 @@ var App = React.createClass({
                     }}
                     tool={(
                         <div>
-                            <span className="r-dialog-btn" data-r-dialog-close="true" >Close</span>
-                            <span className="r-dialog-btn r-dialog-btn--primary">Save</span>
+                            <span className="r-dialog-btn" data-r-dialog-close="true">Close</span>
                         </div>
                     )}
                      >
-                    bootstrap style
+                    Rotate the mouse wheel
                 </Dialog>
                 <button className="r-dialog-btn" onClick={function() {
                         self.setState({
                             show: true
                         })
-                    }} >bootstrap</button>
+                    }} >body scroll</button>
             </div>
         )
     }
