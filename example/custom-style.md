@@ -87,7 +87,8 @@ html .m-dialog--bootstrap .r-dialog-btn {
 .m-dialog-rootClasssNameExample {
     position: fixed;
     top:0;
-    margin-top: 70px;
+    margin-top: 60px;
+    margin-left: 200px;
     left:0;
     width:100%;
     height: 100%;
@@ -99,7 +100,8 @@ html .m-dialog--bootstrap .r-dialog-btn {
     position: absolute;
 }
 .m-dialog-rootClasssNameExample .r-dialog-wrap {
-    margin-top: -70px;
+    margin-top: -30px;
+    margin-left: -100px
 }
 
 ````

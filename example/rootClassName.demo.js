@@ -12,6 +12,7 @@ var App = React.createClass({
             <div>
                 <Dialog
                     title="rootClassName"
+                    style={{width:200}}
                     show={self.state.show}
                     rootClassName="m-dialog-rootClasssNameExample"
                     onClose={function () {
@@ -20,10 +21,7 @@ var App = React.createClass({
                         })
                     }}
                      >
-                    离离原上草，一岁一枯荣。
-                    野火烧不尽，春风吹又生。
-                    远芳侵古道，晴翠接荒城。
-                    又送王孙去，萋萋满别情。
+                    Don't mask navigation
                 </Dialog>
                 <button className="r-dialog-btn" onClick={function() {
                         self.setState({

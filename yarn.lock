@@ -2528,9 +2528,9 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-jquery:
-  version "3.1.1"
-  resolved "http://registry.npm.taobao.org/jquery/download/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
+jquery@1.12.0:
+  version "1.12.0"
+  resolved "http://registry.npm.taobao.org/jquery/download/jquery-1.12.0.tgz#44653be4e3e4628b106bf2141dfd10fbca6021ef"
 
 js-base64@^2.1.9:
   version "2.1.9"
