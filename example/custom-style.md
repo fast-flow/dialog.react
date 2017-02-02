@@ -22,6 +22,7 @@ html .m-dialog-mask--bootstrap {
     z-index: 1010;
     background-color:black;
     opacity: .5;
+    filter:alpha(opacity=50);
 }
 html .m-dialog--bootstrap .r-dialog {
     font-size:1em;

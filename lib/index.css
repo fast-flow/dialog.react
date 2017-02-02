@@ -109,6 +109,7 @@ html .r-dialog-mask--simple {
     z-index: 1010;
     background-color:black;
     opacity: .3;
+    filter:alpha(opacity=30);
 }
 html .r-dialog--simple .r-dialog {
     font-size:1em;
