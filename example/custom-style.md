@@ -127,6 +127,7 @@ html .m-dialog--bodyclickable {
     left:50%;
     top:50%;
     transform: translate(-50%, -50%);
+    overflow-y: inherit;
 }
 html .m-dialog--bodyclickable .r-dialog {
     margin: 0;
