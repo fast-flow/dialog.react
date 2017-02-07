@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="keywords" content="react,react-dialog.react,dialog.react-react,dialog.react,React custom style">
+<meta name="description" content="command dialog">
+<title>command dialog</title>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/markrun-themes@latest/vue.css" />
+<style>.hljs{display:block;overflow-x:auto;padding:0.5em;color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-keyword,.hljs-formula{color:#c678dd}.hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-string,.hljs-regexp,.hljs-addition,.hljs-attribute,.hljs-meta-string{color:#98c379}.hljs-built_in,.hljs-class .hljs-title{color:#e6c07b}.hljs-attr,.hljs-variable,.hljs-template-variable,.hljs-type,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-number{color:#d19a66}.hljs-symbol,.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-title{color:#61aeee}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}.hljs-link{text-decoration:underline}</style>
+<style>
+.markrun {
+margin-bottom: 10px;
+margin-top: 10px;
+}
+.fast-flow-demo {
+border:1px solid #EEE;
+padding: 20px;
+margin-bottom: 10px;
+margin-top: 10px;
+}
+img {border:none;}
+</style>
+<!-- Polyfills -->
+<!--[if lt IE 10]>
+<script src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,es5-shim/4.5.7/es5-shim.min.js,es5-shim/4.5.7/es5-sham.min.js,html5shiv/3.7.2/html5shiv.min.js,media-match/2.0.2/media.match.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="markdown-header">
+<a class="markdown-header-logo" href="/dialog.react/0.1.3/index.html">
+<img class="markdown-header-logo-photo"  src="https://raw.githubusercontent.com/fast-flow/react/master/logo.png" />
+<span class="markdown-header-logo-text">dialog.react</span>
+</a>
+<ul class="markdown-header-nav" >
+<li>
+<a href="/dialog.react/0.1.3/doc/index.html" class="markdown-header-nav-link">Document</a>
+</li>
+<li>
+<a href="/dialog.react/0.1.3/example/index.html" class="markdown-header-nav-link">Example</a>
+</li>
+<li>
+<a href="https://github.com/fast-flow/dialog.react/issues" class="markdown-header-nav-link">Community</a>
+</li>
+</ul>
+</div>
+<div class="markdown-sidebar" id="markrun-sidebar">
+<h3 id="markrunCurrentPageTitle"></h3>
+</div>
+<div class="markdown-content">
+<div class="markdown-body" id="markrun-body" >
+<h1 id="command dialog" ><a class="markrun-anchor" href="#command dialog"><span class="markrun-anchor-link"></span></a>command dialog</h1><p>Some scenarios can encapsulate the command of dialog,<strong>But don&#39;t abuse command dialog.</strong></p>
+<p>When the popup window content has a complex interaction, don&#39;t use the command dialog.</p>
+<div id="example__command-dialog_node" class="fast-flow-demo">loading...</div>
+
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> React = <span class="hljs-keyword">require</span>(<span class="hljs-string">'react'</span>)
+<span class="hljs-keyword">var</span> Dialog = <span class="hljs-keyword">require</span>(<span class="hljs-string">'dialog.react'</span>).<span class="hljs-keyword">default</span>
+<span class="hljs-keyword">var</span> ReactDOM = <span class="hljs-keyword">require</span>(<span class="hljs-string">'react-dom'</span>)
+<span class="hljs-keyword">var</span> commandDialog = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(type, settings, callback)</span> </span>{
+    <span class="hljs-keyword">var</span> TempCompoenent = React.createClass({
+        getInitialState: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> {
+                show: <span class="hljs-keyword">true</span>
+            }
+        },
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">var</span> <span class="hljs-keyword">self</span> = this
+            <span class="hljs-keyword">var</span> tool
+            <span class="hljs-keyword">if</span> (type === <span class="hljs-string">'confirm'</span>) {
+                tool = (
+                    &lt;div style={{textAlign: <span class="hljs-string">'center'</span>}} &gt;
+                        &lt;button onClick={<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                            <span class="hljs-keyword">self</span>.setState({
+                                show: <span class="hljs-keyword">false</span>
+                            })
+                            settings.onConfirm()
+                        }} className=<span class="hljs-string">"r-dialog-btn r-dialog-btn--primary"</span>&gt;
+                            确认
+                        &lt;/button&gt;
+                        &lt;button data-r-dialog-close=<span class="hljs-string">"true"</span> className=<span class="hljs-string">"r-dialog-btn r-dialog-btn--primary"</span>&gt;
+                            取消
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                )
+            }
+            <span class="hljs-keyword">return</span> (
+                &lt;Dialog
+                    style={{width: <span class="hljs-number">400</span>, textAlign: <span class="hljs-string">'center'</span>}}
+                    show={<span class="hljs-keyword">self</span>.state.show}
+                    tool={tool}
+                    title={(&lt;strong&gt;{settings.title}&lt;/strong&gt;)}
+                    onClose={<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                        <span class="hljs-keyword">self</span>.setState({
+                            show: <span class="hljs-keyword">false</span>
+                        })
+                        <span class="hljs-keyword">if</span> (settings.onClose) {
+                            settings.onClose()
+                        }
+                    }}
+                 &gt;
+                    {
+                        type !== <span class="hljs-string">'confirm'</span>?
+                        (
+                            &lt;div className={<span class="hljs-string">"iconfont icon-"</span> + type}&gt;&lt;/div&gt;
+                        ):<span class="hljs-keyword">null</span>
+                    }
+                    {settings.content}
+                &lt;/Dialog&gt;
+            )
+        }
+    })
+    ReactDOM.render((
+        &lt;TempCompoenent /&gt;
+    ),
+    document.createElement(<span class="hljs-string">'div'</span>))
+}
+<span class="hljs-keyword">var</span> App = React.createClass({
+    render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">var</span> <span class="hljs-keyword">self</span> = this
+        <span class="hljs-keyword">return</span> (
+            &lt;div&gt;
+                &lt;button onClick={<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                    commandDialog(<span class="hljs-string">'success'</span>, {
+                        title: <span class="hljs-string">'操作成功'</span>,
+                        content: <span class="hljs-string">'数据删除成功'</span>,
+                        onClose: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                            console.log(<span class="hljs-string">'success 关闭'</span>)
+                        }
+                    })
+                }} className=<span class="hljs-string">"r-dialog-btn r-dialog-btn--primary"</span>&gt; success &lt;/button&gt;
+                &lt;hr /&gt;
+                &lt;button onClick={<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                    commandDialog(<span class="hljs-string">'info'</span>, {
+                        title: <span class="hljs-string">'提示'</span>,
+                        content: <span class="hljs-string">'提示消息'</span>,
+                        onClose: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                            console.log(<span class="hljs-string">'info 关闭'</span>)
+                        }
+                    })
+                }} className=<span class="hljs-string">"r-dialog-btn r-dialog-btn--info"</span>&gt; info &lt;/button&gt;
+                &lt;hr /&gt;
+                &lt;button onClick={<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                    commandDialog(<span class="hljs-string">'danger'</span>, {
+                        title: <span class="hljs-string">'密码错误'</span>,
+                        content: <span class="hljs-string">'您输入的密码错误'</span>,
+                        onClose: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                            console.log(<span class="hljs-string">'danger 关闭'</span>)
+                        }
+                    })
+                }} className=<span class="hljs-string">"r-dialog-btn r-dialog-btn--danger"</span>&gt; danger &lt;/button&gt;
+                &lt;hr /&gt;
+                &lt;button onClick={<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                    commandDialog(<span class="hljs-string">'warning'</span>, {
+                        title: <span class="hljs-string">'到期提醒'</span>,
+                        content: <span class="hljs-string">'您的账户将于 2017年02月07日 到期'</span>,
+                        onClose: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                            console.log(<span class="hljs-string">'warning 关闭'</span>)
+                        }
+                    })
+                }} className=<span class="hljs-string">"r-dialog-btn r-dialog-btn--warning"</span>&gt; warning &lt;/button&gt;
+                &lt;hr /&gt;
+                &lt;button className=<span class="hljs-string">"r-dialog-btn"</span> onClick={<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                    commandDialog(<span class="hljs-string">'confirm'</span>, {
+                        title: <span class="hljs-string">'confirm delete'</span>,
+                        content: <span class="hljs-string">'delete user someone'</span>,
+                        onConfirm: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                            console.log(<span class="hljs-string">'confirm delete someone'</span>)
+                        },
+                        onClose: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                            console.log(<span class="hljs-string">'someone cancel'</span>)
+                        }
+                    })
+                }} &gt;confirm&lt;/button&gt;
+            &lt;/div&gt;
+        )
+    }
+})
+module.exports = App
+</code></pre>
+<p><a href="./command-dialog.demo.js">./command-dialog.demo.js</a></p>
+<div class="markrun markrun--css">
+<div class="markrun-html"></div>
+<div class="markrun-code">
+<style>
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-info:before { content: "\e605"; }
+.icon-wait:before { content: "\e606"; }
+.icon-help:before { content: "\e600"; }
+.icon-danger:before { content: "\e601"; }
+.icon-warning:before { content: "\e602"; }
+.icon-success:before { content: "\e603"; }
+.icon-stop:before { content: "\e604"; }
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_1468304477_6775875.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1468304477_6775875.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAA+kABAAAAAAGOAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABbAAAABoAAAAcc5IciEdERUYAAAGIAAAAHQAAACAAOAAET1MvMgAAAagAAABNAAAAYFcxXINjbWFwAAAB+AAAAE4AAAFKy6Ihr2N2dCAAAAJIAAAAGAAAACQNDf9wZnBnbQAAAmAAAAT8AAAJljD3npVnYXNwAAAHXAAAAAgAAAAIAAAAEGdseWYAAAdkAAAFeQAACCw/G9uIaGVhZAAADOAAAAAwAAAANgp8vcloaGVhAAANEAAAAB0AAAAkB4UDxGhtdHgAAA0wAAAAIAAAACALkAFlbG9jYQAADVAAAAAYAAAAGArMDGZtYXhwAAANaAAAACAAAAAgAS0CDG5hbWUAAA2IAAABQwAAAkA0guwacG9zdAAADswAAABAAAAAcBusWoxwcmVwAAAPDAAAAJUAAACVpbm+ZnicY2BgYGQAgjO2i86D6MurbO7AaABPswemAAB4nGNgZGBg4ANiCQYQYGJgBEIuIGYB8xgABLgAPQAAAHicY2Bh/sv4hYGVgYFpJtMZBgaGfgjN+JrBmJETKMrAxswAA4wCDAgQkOaawnCAoeIZG3PD/waGGOYQBieQGpAcswRYiQIDIwDb3g1cAAAAeJxjYGBgZoBgGQZGBhBwAfIYwXwWBg0gzQakGRmYGCqesf3/D+RXPGP4//9/txQLVD0QMLIxwDmMTECCiQEVMDLQDDDTzmiSAAAiRwk5AAB4nGNgQANGDEbMEv8fMof83wejAUVqCIN4nJ1VaXfTRhSVvGRP2pLEUETbMROnNBqZsAUDLgQpsgvp4kBoJegiJzFd+AN87Gf9mqfQntOP/LTeO14SWnpO2xxL776ZO2/TexNxjKjseSCuUUdKXveksv5UKvGzpK7rXp4o6fWSumynnpIWUStNlczF/SO5RHUuVrJJsEnG616inqs874PSSzKsKEsi2iLayrwsTVNPHD9NtTi9ZJCmgZSMgp1Ko48QqlEvkaoOZUqHXr2eipsFUjYa8aijonoQKu4czzmljTpgpHKVw1yxWW3ke0nW8/qP0kSn2Nt+nGDDY/QjV4FUjMzA9jQeh08k09FeIjORf+y4TpSFUhtcAK9qsMegSvGhuPFBthPI1HjN8XVRqTQyFee6z7LZLB2PlRDlwd/YoZQbur+Ds9OmqFZjcfvAMwY5KZQoekgWgA5Tmaf2CNo8tEBmjfqj4hzwdQgvshBlKs+ULOhQBzJndveTYtrdSddkcaBfBjJvdveS3cfDRa+O9WW7vmAKZzF6khSLixHchzLrp0y71AhHGRdzwMU8XuLWtELIyAKMSiPMUVv4ntmoa5wdY290Ho/VU2TSRfzdTH49OKlY4TjLekfcSJy7x67rwlUgiwinGu8njizqUGWw+vvSkussOGGYZ8VCxZcXvncR+S8xbj+Qd0zhUr5rihLle6YoU54xRYVyGYWlXDHFFOWqKaYpa6aYoTxrilnKc0am/X/p+334Pocz5+Gb0oNvygvwTfkBfFN+CN+UH8E3pYJvyjp8U16Eb0pt4G0pUxGqmLF0+O0lWrWhajkzuMA+D2TNiPZFbwTSMEp11Ukpdb+lVf4k+euix2Prk5K6NWlsiLu6abP4+HTGb25dMuqGnatPjCPloT109dg0oVP7zeHfzl3dKi65q4hqw6g2IpgEgDbotwLxTfNsOxDzll18/EMwAtTPqTVUU3Xt1JUaD/K8q7sYnuTA44hjoI3rrq7ASxNTVkPz4WcpMhX7g7yplWrnsHX5ZFs1hzakwtsi9pVknKbtveRVSZWV96q0Xj6fhiF6ehbXhLZs3cmkEqFRM87x8K4qRdmRlnLUP0Lnl6K+B5xxdkHrwzHuRN1BtTXsdPj5ZiNrCyaGprS9E6BkLF0VY1HlWZxjdA1rHW/cEp6upycW8Sk2mY/CSnV9lI9uI80rdllm0ahKdXSX9lnsqzb9MjtoWB1nP2mqNu7qYVuNKlI9Vb4GtAd2Vt34UA8rPuqgUVU12+jayGM0LmvGfwzIYlz560arJtPv4JZqp81izV1Bc9+YLPdOL2+9yX4r56aRpv9Woy0jl/0cjvltEeDfOSh2U9ZAvTVpiHEB2QsYLtVE5w7N3cYg4jr7H53T/W/NwiA5q22N2Tz14erpKJI7THmcZZtZ1vUozVG0k8Q+RWKrw4nBTY3hWG7KBgbk7j+s38M94K4siw+8bSSAuM/axKie6uDuHlcjNOwruQ8YmWPHuQ2wA+ASxObYtSsdALvSJecOwGfkEDwgh+AhOQS75NwE+Jwcgi/IIfiSHIKvyLkF0COHYI8cgkfkEDwmpw2wTw7BE3IIviaH4BtyWgAJOQQpOQRPySF4ZmRzUuZvqch1oO8sugH0ve0aKFtQfjByZcLOqFh23yKyDywi9dDI1Qn1iIqlDiwi9blFpP5o5NqE+hMVS/3ZIlJ/sYjUF8aXmYGU13oveUcHfwIrvqx+AAEAAf//AA94nJ1VTWwTVxCeeW//7Nhrr73edewk9u4mNsGJ4/gnoQkYNxAHSAL5AYr7Y1oVRbRVTwHioB64VOqBQ+9Ve0jaIHGK2gZEhThwaA6lpdBzkWgrVYBUVeqFC07fs0mhpKpopbczTzvzZt/3zewMELABMEsuAgUZuksJAKAE6EtAEMk4EIKHBLbDPQCyJArMjWqiL5XTLC2Z0xwb/b/duEEuPjpqkzl2VoSejbv0Kg2DARkYghmo4sL4anDqWOkAQfCqXlDngKqo0iqgouCrfnQpbslV1dAjCZKnCi1Cy1s+VEDyKNIxcMsiEVrcQiWAquqdBq/XrY5Ex1dNFnH8XyIqLvfcfwwZZiEnni+kMPdcMUsHnwmHcyyeisqJ/xewUqmUts3ODg9n+01ztjpbfeXY8MzwzPiewUL/UHbIzJiZaa0/rG0LlYJGCqUU2ippR6uQTxTyaZLCkCWGdENXiSMlUpi0ZOaRtNNkF5q2pBu57EA+YUqySjtwWMoOJNOYTCSxkC+SYcwa7Yit0chsoKstQD9EdzjZ8X79AFnCUMxR1Zga763v72m39dbWeFBZ8AQCHm8gcF6RxBaBCD61a8/0VKnTNFyiSxSl+qeiLxK6GusmMfS0JiMT3f42wRuPBt74IG8ODXWZLsRz5zAYjasXdmsRja33IkawU/V7lXDE62hBHRd+aQkHPe2Jn1nNwsjGdXqNFmE75GEv7Cy9AASQVTFjnLJ1AiQAIkGFuYoCFV8GQZaFSRAEeRpkQR41dT3YkzC6FUZcokgGB9LEYeyZHWSA489lDVlXBdnUDbOISUYOI9WWQjrJdhBGKCMxX0SSw+35HkL09P7+ndNZHTHW2eGLdJk9A0SP2bEQYpthRnEi5zg5x7qyfHZ09OzylSWucK+/MzXYmdzb357a9aIRCWNI9zhxo9fW2qPRdktP+KLseOCO0xpxnEgr+ba82DhaXly6slxj6ODgxi16ix4GH6TgtZIr1dluMOqxNL4aZ7XdJqLAnAQyR9kPzag5wX5YnAbEFmS1av2DWUCYfOwEOFq5rIf1iOmX9BQwavQOki2SfBqpoUt2H8qSncjvZhWTH8jGcHAga+g+JO9cvlAbG6tdaKpZze7TqlUtY3FpZbjss7UqPcxdVhbHxhZXmGfdYB7+48f9TzyqjZPA+xNMb9ym39FDDKcJDkyNr1oMXpS3HwHECrAuRQRa4c3rL3TxrVbW1iYf+xAOLhQKmlvBEZvjMfQCw5jYhXwfIm+vrSyMjS2srK3UyuXavT7L2lz0ULn22aWm9dJntUev2/z192HLCv9h2rYJPE9TGzfoD3SK3d+Cw2ttSCjPEe8/EcY5nASBCifZNelJfr+ZTQyxLcZNCDMcQrlySQ91m34x+Ex6ZCkp9eFTaSHv/i0p3T9q4bB2WrMz/sk1Rjad2seTUdu3r9ZIxkd3NERmZ2mYWGNeDQzljW/ol3QHwxCEYrMfB58Mj6eYD28dKY8ZX9MY30LgmdtaBYsc/Xz5dLl8ermphLoff6c7Rs8sfbF0ZrSp6kfmm7VQ3LhGP6Zt0AJRNm/6S2k+ySQqV0BSUBSkRsZRwCPswzDNjrjJiFOwugqFwZDfZfKPo96B2SLmE2J+oNnndN46E4VgU/OsD2PB2dyxCtByvAzefLA+P7/+4OtTp+rnXdKs5GqIqy7pHt/u3MnlJ5KLado2v36fO99fz/K3M1zUd3PZKys/KXJv4wXbcG45put0hE3kGGRKvSCJRJSa81ViJSxQ0sg815tkOgVN6wr65VAK4uDnD9Ulx8o4GSdR0DZxNW79Vf18/SEqeAqVu26lfptQj1ueVNw3FTcdqT/ctNZ/ld2CF9OK263cdCvwJwu1VNEAAAB4nGNgZGBgAGL+p9s+xfPbfGWQZ2EAgcurbO7CaaX/+5gvM4cAuRwMTCBRAGSEDKN4nGNgZGBgDvm/jyGGhQEEmC8zMDKgAlYAWFIDUgAAAAF2ACIAAAAAAVUAAAPpACwEAABCAE4AUQBQAEYAPgA+AAAAKAAoACgBZAHmAloCugMcA2ADygQWAAEAAAALAF8ABQAAAAAAAgAmADQAbAAAAIoBdwAAAAB4nH2Qu27CQBBFr3mJSClQ2jQjKwUUa60tE1490KRNj8AGS8SW/ACUb4iULm2UT0ibr8v1etOkwNbOnNm5nocB3OIDDurHQR93llvoYWS5jQe8Wu5Q8225i6WzttxD3/mi0unc8GZgvqq5xfr3lttYQ1vuUPNpuYs3/FjuYeC8I8EWGVLExpZAss3SOEtJT4iwo6DCC4Nol1T0S6urfY49JYIAHrsJ5jz/6zW3PjUKE56ASh+PLMQeyyzfRxJ4Wuby15foB2qiAu1TdWW8Z/bOUVBSp+oezRQLnpJvjA1HL5k9UNPMMsSJGg8zhPznwnmOtFNDOe3YVFBYma20jS6memj4TOsy75ooNrbgMFFeJFkqPndZSFnGm6rMDgnXGZ60NwtHoo4yFZXLWItaSaDpLuKHos7irlxRsaji2r6/AERZdAB4nGNgYgCD/80MRgzYADcQMzIwMUQzMjEyM7IwsjKyMbIzcrCX5mW6mhkYQGlDKG0EpY2htAmUNoXSZgCQshGhS7gAyFJYsQEBjlm5CAAIAGMgsAEjRCCwAyNwsA5FICBLuAAOUUuwBlNaWLA0G7AoWWBmIIpVWLACJWGwAUVjI2KwAiNEswoJBQQrswoLBQQrsw4PBQQrWbIEKAlFUkSzCg0GBCuxBgFEsSQBiFFYsECIWLEGA0SxJgGIUVi4BACIWLEGAURZWVlZuAH/hbAEjbEFAEQAAAA=') format('woff'), /* chrome,firefox */
+    url('//at.alicdn.com/t/font_1468304477_6775875.ttf') format('truetype'), /* chrome,firefox,opera,Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1468304477_6775875.svg#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('//at.alicdn.com/t/font_1468304477_6775875.eot')\0; /* ie8 fix */
+
+}</style>
+</div>
+<div class="markrun-source">
+<pre><code class="lang-css"><span class="hljs-selector-class">.iconfont</span> {
+  <span class="hljs-attribute">font-family</span>:<span class="hljs-string">"iconfont"</span> <span class="hljs-meta">!important</span>;
+  <span class="hljs-attribute">font-size</span>:<span class="hljs-number">16px</span>;
+  <span class="hljs-attribute">font-style</span>:normal;
+  <span class="hljs-attribute">-webkit-font-smoothing</span>: antialiased;
+  <span class="hljs-attribute">-webkit-text-stroke-width</span>: <span class="hljs-number">0.2px</span>;
+  <span class="hljs-attribute">-moz-osx-font-smoothing</span>: grayscale;
+}
+<span class="hljs-selector-class">.icon-info</span><span class="hljs-selector-pseudo">:before</span> { <span class="hljs-attribute">content</span>: <span class="hljs-string">"\e605"</span>; }
+<span class="hljs-selector-class">.icon-wait</span><span class="hljs-selector-pseudo">:before</span> { <span class="hljs-attribute">content</span>: <span class="hljs-string">"\e606"</span>; }
+<span class="hljs-selector-class">.icon-help</span><span class="hljs-selector-pseudo">:before</span> { <span class="hljs-attribute">content</span>: <span class="hljs-string">"\e600"</span>; }
+<span class="hljs-selector-class">.icon-danger</span><span class="hljs-selector-pseudo">:before</span> { <span class="hljs-attribute">content</span>: <span class="hljs-string">"\e601"</span>; }
+<span class="hljs-selector-class">.icon-warning</span><span class="hljs-selector-pseudo">:before</span> { <span class="hljs-attribute">content</span>: <span class="hljs-string">"\e602"</span>; }
+<span class="hljs-selector-class">.icon-success</span><span class="hljs-selector-pseudo">:before</span> { <span class="hljs-attribute">content</span>: <span class="hljs-string">"\e603"</span>; }
+<span class="hljs-selector-class">.icon-stop</span><span class="hljs-selector-pseudo">:before</span> { <span class="hljs-attribute">content</span>: <span class="hljs-string">"\e604"</span>; }
+@<span class="hljs-keyword">font-face</span> {<span class="hljs-attribute">font-family</span>: <span class="hljs-string">"iconfont"</span>;
+  <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'//at.alicdn.com/t/font_1468304477_6775875.eot'</span>); <span class="hljs-comment">/* IE9*/</span>
+  <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'//at.alicdn.com/t/font_1468304477_6775875.eot?#iefix'</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">'embedded-opentype'</span>), <span class="hljs-comment">/* IE6-IE8 */</span>
+    <span class="hljs-built_in">url</span>(<span class="hljs-string">'data:application/x-font-woff;charset=utf-8;base64,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'</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">'woff'</span>), <span class="hljs-comment">/* chrome,firefox */</span>
+    <span class="hljs-built_in">url</span>(<span class="hljs-string">'//at.alicdn.com/t/font_1468304477_6775875.ttf'</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">'truetype'</span>), <span class="hljs-comment">/* chrome,firefox,opera,Safari, Android, iOS 4.2+*/</span>
+  <span class="hljs-built_in">url</span>(<span class="hljs-string">'//at.alicdn.com/t/font_1468304477_6775875.svg#iconfont'</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">'svg'</span>); <span class="hljs-comment">/* iOS 4.1- */</span>
+  <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'//at.alicdn.com/t/font_1468304477_6775875.eot'</span>)\<span class="hljs-number">0</span>; <span class="hljs-comment">/* ie8 fix */</span>
+
+}
+</code></pre></div>
+</div></div>
+</div>
+<div class="markdown-footer" ></div>
+<a href="https://github.com/fast-flow/dialog.react" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#67d2f1; color:#fff; position: absolute; top: 0; border: 0; right: 0;z-index:10;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<script src="/dialog.react/0.1.3/example/dev.js?version=0.1.3" ></script>
+<script src="https://unpkg.com/markrun-sidebar@latest/markrun-sidebar.js"></script>
+<script>
+markrunSidebar({
+element: document.getElementById("markrun-sidebar"),
+content: document.getElementById("markrun-body")
+})
+if (document.getElementsByTagName("h1")[0]) {
+document.getElementById("markrunCurrentPageTitle").innerHTML = document.getElementsByTagName("h1")[0].innerHTML
+}
+</script>
+</body>
+</html>
