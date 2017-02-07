@@ -83,3 +83,12 @@ var render = ReactDOM.render
         render(<Demo />, node)
     })
 })(document.getElementById('example__confirm_node'))
+
+// command-dialog
+;(function (node) {
+    if (!node) {return}
+    require(['./command-dialog.demo.js'], function (Demo) {
+        Demo = Demo.default || Demo
+        render(<Demo />, node)
+    })
+})(document.getElementById('example__command-dialog_node'))

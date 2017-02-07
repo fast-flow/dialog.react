@@ -7,6 +7,7 @@
 1. [width](./width.md)
 1. [animate](./animate.md)
 1. [confirm](./confirm.md)
+1. [command dialog](./command-dialog.md)
 
 ## title&tool
 

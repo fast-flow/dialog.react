@@ -1,6 +1,6 @@
 {
   "name": "dialog.react",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "React,Dialog.Custom style!",
   "repository": "fast-flow/dialog.react",
   "homepage": "http://fast-flow.github.io/dialog.react",
@@ -14,7 +14,7 @@
     "React custom style"
   ],
   "dependencies": {
-    "body.react": "^0.1.0",
+    "body.react": "0.1.1",
     "classnames": "^2.2.5",
     "rc-animate": "^2.3.1",
     "react": "0.14.8",
