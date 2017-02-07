@@ -1,6 +1,6 @@
 {
   "name": "dialog.react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React,Dialog.Custom style!",
   "repository": "fast-flow/dialog.react",
   "homepage": "http://fast-flow.github.io/dialog.react",
@@ -14,7 +14,6 @@
     "React custom style"
   ],
   "dependencies": {
-    "babel-polyfill": "^6.22.0",
     "body.react": "^0.1.0",
     "classnames": "^2.2.5",
     "rc-animate": "^2.3.1",
@@ -31,7 +30,8 @@
     "gh-push": "node config/gh-push.js",
     "npm": "fis3 release npm -c -d ./output -r ./ -f config/fis-conf.js",
     "test-ci": "./node_modules/jest/bin/jest.js",
-    "test": "./node_modules/jest/bin/jest.js --watch"
+    "test": "./node_modules/jest/bin/jest.js --watch",
+    "release": "npm run test-ci && npm run gh && npm run gh-push && npm run npm && cd output && npm publish"
   },
   "jest": {
     "moduleNameMapper": {
@@ -51,7 +51,6 @@
     "babel-plugin-transform-react-display-name": "^6.8.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-plugin-transform-react-jsx-source": "^6.9.0",
-    "babel-polyfill": "^6.22.0",
     "babel-preset-es2015": "^6.18.0",
     "console-polyfill": "^0.2.3",
     "css-loader": "^0.26.1",
