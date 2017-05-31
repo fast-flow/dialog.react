@@ -29,4 +29,4 @@ npm install dialog.react --save
 ## To be solved
 
 - [ ] In extreme cases `props.showBodyStyle` conflict
-- [ ] Unrealized `props.maskAlwaysShow`
+- [ ] Unrealized `props.maskAlwaysShow` 利用一个数组保存当前显示的 dialog 记录，然后决定最底层还是最上层的dialog需要显示遮罩
